@@ -6,28 +6,28 @@ public class Member {
 	private String id;
 	private String name;
 	private int age;
-	private String phoneNumber;
-	private String hobby;
+	private String job;
 	private int salary;
 	private String grade;
 	private int count;
 	private String partnerId;
+	private int managerNum;
 	
 	public Member() {}
 
-	public Member(String gender, String id, String name, int age, String phoneNumber, String hobby, int salary,
-			String grade, int count, String partnerId) {
+	public Member(String gender, String id, String name, int age, String job, int salary,
+			String grade, int count, String partnerId, int managerNum) {
 		super();
 		this.gender = gender;
 		this.id = id;
 		this.name = name;
 		this.age = age;
-		this.phoneNumber = phoneNumber;
-		this.hobby = hobby;
+		this.job = job;
 		this.salary = salary;
 		this.grade = grade;
 		this.count = count;
 		this.partnerId = partnerId;
+		this.managerNum = managerNum;
 	}
 
 	public String getGender() {
@@ -62,20 +62,12 @@ public class Member {
 		this.age = age;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getJob() {
+		return job;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getHobby() {
-		return hobby;
-	}
-
-	public void setHobby(String hobby) {
-		this.hobby = hobby;
+	public void setJob(String job) {
+		this.job = job;
 	}
 
 	public int getSalary() {
@@ -108,6 +100,21 @@ public class Member {
 
 	public void setPartnerId(String partnerId) {
 		this.partnerId = partnerId;
+	}
+
+	public int getManagerNum() {
+		return managerNum;
+	}
+
+	public void setManagerNum(int managerNum) {
+		this.managerNum = managerNum;
+	}
+
+	@Override
+	public String toString() {
+		return "Member [gender=" + gender + ", id=" + id + ", name=" + name + ", age=" + age + ", job=" + job
+				+ ", salary=" + salary + ", grade=" + grade + ", count=" + count + ", partnerId=" + partnerId
+				+ ", managerNum=" + managerNum + "]";
 	}
 	
 	

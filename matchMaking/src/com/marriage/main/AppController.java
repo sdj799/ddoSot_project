@@ -1,17 +1,17 @@
 package com.marriage.main;
 
-import static com.marriage.view.AppUI.*;
+import com.marriage.common.MenuInterface;
+import com.marriage.member.service.MemberService;
 
 public class AppController {
 
+	private MenuInterface service;
+	
 	public void selectMainMenu(int selectNum) {		
-		
-		int select;
 		
 		switch (selectNum) {
 		case 1:
-			showMemberMenu();
-			select = inputInteger();
+			service = new MemberService();			
 			break;
 		case 2:
 			
@@ -25,6 +25,8 @@ public class AppController {
 		default:
 			System.out.println("*** 잘못된 입력입니다.");
 		}
+		
+		service.start();
 		
 	}	
 

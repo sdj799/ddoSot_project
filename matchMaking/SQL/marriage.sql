@@ -3,14 +3,13 @@ DROP TABLE men;
 CREATE TABLE men (
     id VARCHAR(255) PRIMARY KEY,
     name VARCHAR2(20) NOT NULL,
-    age NUMBER NOT NULL,
+    age NUMBER(3) NOT NULL,
     job VARCHAR(50) NOT NULL,
-    phone_number VARCHAR2(20) NOT NULL,
-    hobby VARCHAR2(30),
-    salary NUMBER NOT NULL,
+    salary NUMBER(15) NOT NULL,
     grade VARCHAR2(20) NOT NULL,
-    count NUMBER DEFAULT 3 NULL,
-    partner_id VARCHAR2(20) DEFAULT null
+    count NUMBER(1) DEFAULT 3 NULL,
+    partner_id VARCHAR2(20) DEFAULT null,
+    manager_num NUMBER(3)
 );
 
 CREATE SEQUENCE men_seq
@@ -21,14 +20,13 @@ DROP TABLE women;
 CREATE TABLE women (
     id VARCHAR(255) PRIMARY KEY,
     name VARCHAR2(20) NOT NULL,
-    age NUMBER NOT NULL,
+    age NUMBER(3) NOT NULL,
     job VARCHAR(50) NOT NULL,
-    phone_number VARCHAR2(20) NOT NULL,
-    hobby VARCHAR2(30),
-    salary NUMBER NOT NULL,
+    salary NUMBER(15) NOT NULL,
     grade VARCHAR2(20) NOT NULL,
-    count NUMBER DEFAULT 3 NULL,
-    partner_id VARCHAR2(20) DEFAULT null
+    count NUMBER(1) DEFAULT 3 NULL,
+    partner_id VARCHAR2(20) DEFAULT null,
+    manager_num NUMBER(3)
 );
 
 CREATE SEQUENCE women_seq
@@ -68,123 +66,103 @@ CREATE SEQUENCE manager_seq
 --ALTER TABLE matching ADD FOREIGN KEY(manager_num) REFERENCES manager(manager_num);
 
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-001',
     '±èÃ¶¼ö',
     28,
     '¼±»ý´Ô',
-    '010-1234-5678',
-    '³¬½Ã',
     60000000,
     '°ñµå',
     3);
     
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-002',
     'È«±æµ¿',
     30,
     '¹«Á÷',
-    '010-1111-5678',
-    '°ÔÀÓ',
     0,
     '°ñµå',
     3);
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-003',
     '±è¼öÇö',
     30,
     'ÇÐ»ý',
-    '010-1111-1111',
-    '¾øÀ½',
     0,
     'ºê·ÐÁî',
     3);
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-004',
     '¹Ú¼­ÁØ',
     27,
     'Ãà±¸¼±¼ö',
-    '010-1111-0000',
-    '»êÃ¥',
     30000000,
     '°ñµå',
     3);
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-005',
     'ÀÌÇö¿ì',
     30,
     'CEO',
-    '010-2222-5678',
-    '°ñÇÁ',
     1000000000,
     '´ÙÀÌ¾Æ',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-001',
     '±è¿µÈñ',
     30,
     '»ç¹«Á÷',
-    '010-1111-2222',
-    'ÀáÀÚ±â',
     50000000,
     '°ñµå',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-002',
     '±èÀÇ»ç',
     33,
     'ÀÇ»ç',
-    '010-3333-2222',
-    '°ÔÀÓ',
     80000000,
     '´ÙÀÌ¾Æ',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-003',
     '¾ÆÀÌÀ¯',
     28,
     '±âÀÚ',
-    '010-5555-5555',
-    'µß±¼±â',
     4000000,
     '°ñµå',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-004',
     'ÀÌÇý¸®',
     25,
     '¹è¿ì',
-    '010-3333-2222',
-    '»êÃ¥',
     30000000,
     '°ñµå',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-005',
     'ÀÌ³ª¿µ',
     28,
     '¼±»ý´Ô',
-    '010-4321-7890',
-    '¼îÇÎ',
     40000000,
     '°ñµå',
     3);

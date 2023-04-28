@@ -2,6 +2,6 @@ package com.marriage.common;
 
 public interface MenuInterface {
 	
-	void start(int select);
+	void start();
 
 }
