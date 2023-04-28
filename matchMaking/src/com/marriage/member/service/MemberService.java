@@ -10,10 +10,12 @@ public class MemberService implements MenuInterface {
 	@Override
 	public void start(int select) {
 
+		int selection;
+		
 		switch (select) {
 		case 1:
 			showMemberMenu();
-			select = inputInteger();
+			selection = inputInteger();
 			break;
 		case 2:
 			
@@ -29,6 +31,8 @@ public class MemberService implements MenuInterface {
 		}
 		
 	}
+	
+	// 회원 등록 로직
 
 	
 
