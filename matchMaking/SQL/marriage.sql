@@ -96,31 +96,31 @@ INSERT INTO men
 (id, name, age, job, phone_number, hobby, salary, grade, count)
 VALUES (
     'A-003',
-    '김더미',
+    '김수현',
     30,
     '학생',
     '010-1111-1111',
     '없음',
-    0,
-    '골드',
-    3);
-INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
-VALUES (
-    'A-004',
-    '신차차',
-    13,
-    '집경비견',
-    '010-1111-0000',
-    '산책',
     0,
     '브론즈',
     3);
 INSERT INTO men
 (id, name, age, job, phone_number, hobby, salary, grade, count)
 VALUES (
+    'A-004',
+    '박서준',
+    27,
+    '축구선수',
+    '010-1111-0000',
+    '산책',
+    30000000,
+    '골드',
+    3);
+INSERT INTO men
+(id, name, age, job, phone_number, hobby, salary, grade, count)
+VALUES (
     'A-005',
-    '이벤츠',
+    '이현우',
     30,
     'CEO',
     '010-2222-5678',
@@ -156,12 +156,12 @@ INSERT INTO women
 (id, name, age, job, phone_number, hobby, salary, grade, count)
 VALUES (
     'B-003',
-    '한무직',
+    '아이유',
     28,
-    '무직',
+    '기자',
     '010-5555-5555',
     '뒹굴기',
-    0,
+    4000000,
     '골드',
     3);
 INSERT INTO women
