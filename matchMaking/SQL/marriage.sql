@@ -66,7 +66,7 @@ CREATE SEQUENCE manager_seq
 --ALTER TABLE matching ADD FOREIGN KEY(manager_num) REFERENCES manager(manager_num);
 
 INSERT INTO men
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'A-001',
     '±èÃ¶¼ö',
@@ -74,10 +74,11 @@ VALUES (
     '¼±»ý´Ô',
     60000000,
     '°ñµå',
-    3);
+    3,
+    1);
     
 INSERT INTO men
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'A-002',
     'È«±æµ¿',
@@ -85,9 +86,10 @@ VALUES (
     '¹«Á÷',
     0,
     '°ñµå',
-    3);
+    3,
+    2);
 INSERT INTO men
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'A-003',
     '±è¼öÇö',
@@ -95,9 +97,10 @@ VALUES (
     'ÇÐ»ý',
     0,
     'ºê·ÐÁî',
+    3,
     3);
 INSERT INTO men
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'A-004',
     '¹Ú¼­ÁØ',
@@ -107,7 +110,7 @@ VALUES (
     '°ñµå',
     3);
 INSERT INTO men
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'A-005',
     'ÀÌÇö¿ì',
@@ -115,9 +118,10 @@ VALUES (
     'CEO',
     1000000000,
     '´ÙÀÌ¾Æ',
-    3);
+    3,
+    1);
 INSERT INTO women
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'B-001',
     '±è¿µÈñ',
@@ -125,9 +129,10 @@ VALUES (
     '»ç¹«Á÷',
     50000000,
     '°ñµå',
-    3);
+    3,
+    2);
 INSERT INTO women
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'B-002',
     '±èÀÇ»ç',
@@ -135,9 +140,10 @@ VALUES (
     'ÀÇ»ç',
     80000000,
     '´ÙÀÌ¾Æ',
+    3,
     3);
 INSERT INTO women
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'B-003',
     '¾ÆÀÌÀ¯',
@@ -145,9 +151,10 @@ VALUES (
     '±âÀÚ',
     4000000,
     '°ñµå',
-    3);
+    3,
+    1);
 INSERT INTO women
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'B-004',
     'ÀÌÇý¸®',
@@ -155,9 +162,10 @@ VALUES (
     '¹è¿ì',
     30000000,
     '°ñµå',
-    3);
+    3,
+    2);
 INSERT INTO women
-(id, name, age, job, salary, grade, count)
+(id, name, age, job, salary, grade, count, manager_num)
 VALUES (
     'B-005',
     'ÀÌ³ª¿µ',
@@ -165,6 +173,7 @@ VALUES (
     '¼±»ý´Ô',
     40000000,
     '°ñµå',
+    3,
     3);
 
 INSERT INTO manager
@@ -173,3 +182,5 @@ INSERT INTO manager
 VALUES (2, '°­µ¿¿ø', 2);
 INSERT INTO manager
 VALUES (3, '¼ÛÇý±³', 3);
+
+commit;

@@ -2,25 +2,25 @@ package com.marriage.manager;
 
 public class Manager {
 
-	private int managerId;
+	private int managerNum;
 	private String managerName;
 	private int performance;
 	
 	public Manager() {}
 
-	public Manager(int managerId, String managerName, int performance) {
+	public Manager(int managerNum, String managerName, int performance) {
 		super();
-		this.managerId = managerId;
+		this.managerNum = managerNum;
 		this.managerName = managerName;
 		this.performance = performance;
 	}
 
-	public int getManagerId() {
-		return managerId;
+	public int getManagerNum() {
+		return managerNum;
 	}
 
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
+	public void setManagerId(int managerNum) {
+		this.managerNum = managerNum;
 	}
 
 	public String getManagerName() {
@@ -41,7 +41,7 @@ public class Manager {
 
 	@Override
 	public String toString() {
-		return "Manager [매니저번호: " + managerId + ", 매니저이름: " + managerName + ", 실적: " + performance
+		return "Manager [매니저번호: " + managerNum + ", 매니저이름: " + managerName + ", 실적: " + performance
 				+ "]";
 	}
 	
