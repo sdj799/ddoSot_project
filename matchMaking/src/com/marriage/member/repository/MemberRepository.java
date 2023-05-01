@@ -114,9 +114,9 @@ public class MemberRepository {
 	public void modifyMemberInfo(String id, int select) {
 		String sql = "";
 		if(select == 1) {
-			sql = "DELETE FROM men WHERE id = '?'";
+			sql = "DELETE FROM men WHERE id = ?";
 		} else if(select == 2) {
-			sql = "DELETE FROM women WHERE id = '?'";
+			sql = "DELETE FROM women WHERE id = ?";
 		} else {
 			System.out.println("잘못된 입력입니다.");
 			return;
@@ -129,6 +129,8 @@ public class MemberRepository {
 			} else {
 				System.out.println("\n*** 검색한 회원의 회원번호로만 삭제가 가능합니다.");
 			}
+		} catch (SQLException e) {
+			System.out.println("존재하지 않는 아이디 입니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
