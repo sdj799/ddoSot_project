@@ -3,14 +3,13 @@ DROP TABLE men;
 CREATE TABLE men (
     id VARCHAR(255) PRIMARY KEY,
     name VARCHAR2(20) NOT NULL,
-    age NUMBER NOT NULL,
+    age NUMBER(3) NOT NULL,
     job VARCHAR(50) NOT NULL,
-    phone_number VARCHAR2(20) NOT NULL,
-    hobby VARCHAR2(30),
-    salary NUMBER NOT NULL,
+    salary NUMBER(15) NOT NULL,
     grade VARCHAR2(20) NOT NULL,
-    count NUMBER DEFAULT 3 NULL,
-    partner_id VARCHAR2(20) DEFAULT null
+    count NUMBER(1) DEFAULT 3 NULL,
+    partner_id VARCHAR2(20) DEFAULT null,
+    manager_num NUMBER(3)
 );
 
 CREATE SEQUENCE men_seq
@@ -21,14 +20,13 @@ DROP TABLE women;
 CREATE TABLE women (
     id VARCHAR(255) PRIMARY KEY,
     name VARCHAR2(20) NOT NULL,
-    age NUMBER NOT NULL,
+    age NUMBER(3) NOT NULL,
     job VARCHAR(50) NOT NULL,
-    phone_number VARCHAR2(20) NOT NULL,
-    hobby VARCHAR2(30),
-    salary NUMBER NOT NULL,
+    salary NUMBER(15) NOT NULL,
     grade VARCHAR2(20) NOT NULL,
-    count NUMBER DEFAULT 3 NULL,
-    partner_id VARCHAR2(20) DEFAULT null
+    count NUMBER(1) DEFAULT 3 NULL,
+    partner_id VARCHAR2(20) DEFAULT null,
+    manager_num NUMBER(3)
 );
 
 CREATE SEQUENCE women_seq
@@ -68,123 +66,103 @@ CREATE SEQUENCE manager_seq
 --ALTER TABLE matching ADD FOREIGN KEY(manager_num) REFERENCES manager(manager_num);
 
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-001',
     '김철수',
     28,
     '선생님',
-    '010-1234-5678',
-    '낚시',
     60000000,
     '골드',
     3);
     
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-002',
     '홍길동',
     30,
     '무직',
-    '010-1111-5678',
-    '게임',
     0,
     '골드',
     3);
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-003',
-    '김더미',
+    '김수현',
     30,
     '학생',
-    '010-1111-1111',
-    '없음',
-    0,
-    '골드',
-    3);
-INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
-VALUES (
-    'A-004',
-    '신차차',
-    13,
-    '집경비견',
-    '010-1111-0000',
-    '산책',
     0,
     '브론즈',
     3);
 INSERT INTO men
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
+VALUES (
+    'A-004',
+    '박서준',
+    27,
+    '축구선수',
+    30000000,
+    '골드',
+    3);
+INSERT INTO men
+(id, name, age, job, salary, grade, count)
 VALUES (
     'A-005',
-    '이벤츠',
+    '이현우',
     30,
     'CEO',
-    '010-2222-5678',
-    '골프',
     1000000000,
     '다이아',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-001',
     '김영희',
     30,
     '사무직',
-    '010-1111-2222',
-    '잠자기',
     50000000,
     '골드',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-002',
     '김의사',
     33,
     '의사',
-    '010-3333-2222',
-    '게임',
     80000000,
     '다이아',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-003',
-    '한무직',
+    '아이유',
     28,
-    '무직',
-    '010-5555-5555',
-    '뒹굴기',
-    0,
+    '기자',
+    4000000,
     '골드',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-004',
     '이혜리',
     25,
     '배우',
-    '010-3333-2222',
-    '산책',
     30000000,
     '골드',
     3);
 INSERT INTO women
-(id, name, age, job, phone_number, hobby, salary, grade, count)
+(id, name, age, job, salary, grade, count)
 VALUES (
     'B-005',
     '이나영',
     28,
     '선생님',
-    '010-4321-7890',
-    '쇼핑',
     40000000,
     '골드',
     3);

@@ -30,9 +30,20 @@ public class AppUI {
 		System.out.println("2. 매칭 관리");
 		System.out.println("3. 매니저 정보 관리");
 		System.out.println("4. 프로그램 종료");
+		System.out.println("***********************************************");
+		System.out.print(">>> ");
 	}
 	
 	// 회원 정보 관리 콘솔
+	public static void showMemberMenu() {
+		System.out.println("*************** 회원 관리 메뉴 ***************");
+		System.out.println("1. 회원 등록");
+		System.out.println("2. 회원 검색");
+		System.out.println("3. 회원 정보 수정");
+		System.out.println("4. 돌아가기");
+		System.out.println("*******************************************");
+		System.out.print(">>> ");
+	}
 	
 	// 매칭 관리 콘솔
 	
