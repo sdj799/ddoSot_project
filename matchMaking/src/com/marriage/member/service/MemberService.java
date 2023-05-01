@@ -25,7 +25,7 @@ public class MemberService implements MenuInterface {
 				showMemberList();
 				break;
 			case 3:
-
+				showModifyMemberMenu();
 				break;
 			case 4:
 				return;
@@ -68,10 +68,23 @@ public class MemberService implements MenuInterface {
 		System.out.println("*** 성별을 선택 하세요.");
 		System.out.println("[ 1. 남성 | 2. 여성 ]");
 		System.out.print(">>> ");
-		int select = inputInteger();
-		System.out.println("*************** 회원 리스트 ***************");
+		int select = inputInteger();		
 		memberRepository.memberList(select);
 		
+	}
+	
+	// 회원 정보 수정 로직
+	private void showModifyMemberMenu() {
+		System.out.println("*************** 회원 정보 삭제 ***************");
+		System.out.println("*** 성별을 선택 하세요.");
+		System.out.println("[ 1. 남성 | 2. 여성 ]");
+		System.out.print(">>> ");
+		int select = inputInteger();	
+		memberRepository.memberList(select);
+		System.out.println("*** 삭제할 회원의 아이디를 입력해 주세요.");
+		System.out.print(">>> ");
+		String id = inputString();
+		memberRepository.modifyMemberInfo(id, select);
 	}
 
 

@@ -66,11 +66,15 @@ public class MemberRepository {
 
 	//회원 검색
 	public void memberList (int select) {
+		System.out.println("*************** 회원 리스트 ***************");
 		String sql = "";
 		if(select == 1) {
 			sql = "SELECT * FROM men";
-		} else {
+		} else if(select == 2) {
 			sql = "SELECT * FROM women";
+		} else {
+			System.out.println("잘못된 입력입니다.");
+			return;
 		}
 		try(Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -95,6 +99,30 @@ public class MemberRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void modifyMemberInfo(String id, int select) {
+		String sql = "";
+		if(select == 1) {
+			sql = "DELETE FROM men WHERE id = ?";
+		} else if(select == 2) {
+			sql = "DELETE FROM women WHERE id = ?";
+		} else {
+			System.out.println("잘못된 입력입니다.");
+			return;
+		}
+		try(Connection conn = connection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("\n*** 회원정보가 정상 삭제되었습니다.");
+			} else {
+				System.out.println("\n*** 검색한 회원의 회원번호로만 삭제가 가능합니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
