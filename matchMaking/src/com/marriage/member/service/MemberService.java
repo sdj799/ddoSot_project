@@ -73,7 +73,7 @@ public class MemberService implements MenuInterface {
 		
 	}
 	
-	// 회원 정보 수정 로직
+	// 회원 정보 삭제 로직
 	private void showModifyMemberMenu() {
 		System.out.println("*************** 회원 정보 삭제 ***************");
 		System.out.println("*** 성별을 선택 하세요.");

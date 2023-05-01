@@ -44,25 +44,25 @@ public class MemberRepository {
 	}
 
 	//매니저 목록 조회
-	//	public void showManagerList() {
-	//		String sql = "SELECT * FROM managers";
-	//		
-	//		try(Connection conn = connection.getConnection();
-	//				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	//			ResultSet rs = pstmt.executeQuery();
-	//			
-	//			while(rs.next()) {
-	//				Manager manager = new Manager(
-	//							
-	//						);
-	//				System.out.println(manager);
-	//			}
-	//			
-	//		} catch (Exception e) {
-	//			e.printStackTrace();
-	//		}
-	//		
-	//	}
+//		public void showManagerList() {
+//			String sql = "SELECT * FROM managers";
+//			
+//			try(Connection conn = connection.getConnection();
+//					PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//				ResultSet rs = pstmt.executeQuery();
+//				
+//				while(rs.next()) {
+//					Manager manager = new Manager(
+//								
+//							);
+//					System.out.println(manager);
+//				}
+//				
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			
+//		}
 
 	//회원 검색
 	public void memberList (int select) {
