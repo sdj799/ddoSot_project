@@ -46,7 +46,16 @@ public class AppUI {
 	}
 	
 	// 매칭 관리 콘솔
-	
+	public static void showMatchingMenu() {
+		System.out.println("*************** 매칭 메뉴 ***************");
+		System.out.println("1. 매니저id 매칭");
+		System.out.println("2. 등급별 매칭");
+		System.out.println("3. 매칭 취소");
+		System.out.println("4. 결혼 확정");
+		System.out.println("5. 돌아가기");
+		System.out.println("*******************************************");
+		System.out.print(">>> ");
+	}
 	// 매니저 정보 관리 콘솔
 
 }

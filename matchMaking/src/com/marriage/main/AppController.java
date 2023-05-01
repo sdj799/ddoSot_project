@@ -1,6 +1,7 @@
 package com.marriage.main;
 
 import com.marriage.common.MenuInterface;
+import com.marriage.matching.MatchingService;
 import com.marriage.member.service.MemberService;
 
 public class AppController {
@@ -14,7 +15,7 @@ public class AppController {
 			service = new MemberService();			
 			break;
 		case 2:
-			
+			service = new MatchingService();
 			break;
 		case 3:
 			
