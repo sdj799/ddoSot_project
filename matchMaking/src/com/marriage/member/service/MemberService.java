@@ -3,6 +3,7 @@ package com.marriage.member.service;
 import static com.marriage.view.AppUI.*;
 
 import com.marriage.common.MenuInterface;
+import static com.marriage.matching.MatchingGrade.*;
 import com.marriage.member.domain.Member;
 import com.marriage.member.repository.MemberRepository;
 
@@ -51,6 +52,11 @@ public class MemberService implements MenuInterface {
 		String job = inputString();
 		System.out.print("* 연봉 : ");
 		int salary = inputInteger();
+		System.out.println("*************** 매니저 목록 ****************");
+		memberRepository.showManagerList();
+		System.out.println("******************************************");
+		System.out.print("원하는 매니저의 번호를 선택해 주세요.>>> ");
+		int managerNum = inputInteger();		
 		
 		Member member = new Member();
 		member.setName(name);
@@ -58,6 +64,8 @@ public class MemberService implements MenuInterface {
 		member.setAge(age);
 		member.setJob(job);
 		member.setSalary(salary);
+		member.setManagerNum(managerNum);		
+		matchingGrade(member);
 		
 		memberRepository.regToRepository(member);
 		
@@ -86,6 +94,4 @@ public class MemberService implements MenuInterface {
 		String id = inputString();
 		memberRepository.modifyMemberInfo(id, select);
 	}
-
-
 }

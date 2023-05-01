@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.marriage.common.DataBaseConnection;
+import com.marriage.manager.Manager;
 import com.marriage.member.domain.Member;
 
 public class MemberRepository {
@@ -18,12 +19,12 @@ public class MemberRepository {
 
 		if(member.getGender().equals("남")) {
 			sql = "INSERT INTO men "
-					+ "(id ,name, age, job, salary, manager_num) "
-					+ "VALUES (men_seq.NEXTVAL, ?,?,?,?,?)";
+					+ "(id ,name, age, job, salary, manager_num, grade) "
+					+ "VALUES ('A-' || men_seq.NEXTVAL, ?,?,?,?,?,?)";
 		} else {
 			sql = "INSERT INTO women "
-					+ "(id ,name, age, job, salary, manager_num) "
-					+ "VALUES (men_seq.NEXTVAL, ?,?,?,?,?)";
+					+ "(id ,name, age, job, salary, manager_num, grade) "
+					+ "VALUES ('B-' || women_seq.NEXTVAL, ?,?,?,?,?,?)";
 		}
 
 		try(Connection conn = connection.getConnection();
@@ -32,37 +33,45 @@ public class MemberRepository {
 			pstmt.setInt(2, member.getAge());
 			pstmt.setString(3, member.getJob());
 			pstmt.setInt(4, member.getSalary());
+			pstmt.setInt(5, member.getManagerNum());
+			pstmt.setString(6, member.getGrade());
+			
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("\n*** 회원이 정상 등록되었습니다.");
+			} else {
+				System.out.println("\n*** 회원 등록에 실패하셨습니다.");
+			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	//매니저 목록 조회
-//		public void showManagerList() {
-//			String sql = "SELECT * FROM managers";
-//			
-//			try(Connection conn = connection.getConnection();
-//					PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//				ResultSet rs = pstmt.executeQuery();
-//				
-//				while(rs.next()) {
-//					Manager manager = new Manager(
-//								
-//							);
-//					System.out.println(manager);
-//				}
-//				
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			
-//		}
+		public void showManagerList() {
+			String sql = "SELECT * FROM manager";
+			
+			try(Connection conn = connection.getConnection();
+					PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Manager manager = new Manager(
+							rs.getInt("manager_num"),
+							rs.getString("name"),
+							rs.getInt("performance")
+							);
+					System.out.println(manager);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 
 	//회원 검색
 	public void memberList (int select) {
@@ -100,13 +109,14 @@ public class MemberRepository {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//회원 삭제
 	public void modifyMemberInfo(String id, int select) {
 		String sql = "";
 		if(select == 1) {
-			sql = "DELETE FROM men WHERE id = ?";
+			sql = "DELETE FROM men WHERE id = '?'";
 		} else if(select == 2) {
-			sql = "DELETE FROM women WHERE id = ?";
+			sql = "DELETE FROM women WHERE id = '?'";
 		} else {
 			System.out.println("잘못된 입력입니다.");
 			return;
