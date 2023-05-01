@@ -23,27 +23,16 @@ public class MatchingService implements MenuInterface {
 
 	@Override
 	public void start() {
+		String id = inputId();
+		logIn(id);
 		while(true) {
-			String id = inputId();
-			logIn(id);
 //			if(grade == "") continue; //잘못 입력했을때 다시 입력
 			showMatchingMenu();
 			int select = inputInteger();
 
 			switch (select) {
 			case 1:
-				String ptid = "";
-				if(gender.equals("m")) {
-					matRep.searchMenID(i);
-					System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
-					ptid= inputString();
-				} else {
-					matRep.searchWomenID(i);
-					System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
-					ptid = inputString();
-				}
-				Matching mat = new Matching(1, id, ptid, i);
-				matRep.addMatching(mat);
+				selectPart(id);
 				break;
 			case 2:
 				
@@ -52,7 +41,7 @@ public class MatchingService implements MenuInterface {
 				
 				break;
 			case 4:
-				
+				matRep.deleteMatching();
 				break;
 			case 5:	return;
 			default:
@@ -99,6 +88,22 @@ public class MatchingService implements MenuInterface {
 			e.printStackTrace();
 		}
 	}
-
+	// 매칭할 상대를 선택하는 매서드
+	public void selectPart(String id) {
+		String ptid = "";
+		if(gender.equals("m")) {
+			matRep.searchMenID(i);
+			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
+			ptid= inputString();
+		} else {
+			matRep.searchWomenID(i);
+			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
+			ptid = inputString();
+		}
+		Matching mat = new Matching(1, id, ptid, i);
+		matRep.addMatching(mat); // 매칭 db 저장
+		matRep.addPart(id , ptid);
+		matRep.addPart(ptid, id); // 파트너 id 저장
+	}
 
 }
