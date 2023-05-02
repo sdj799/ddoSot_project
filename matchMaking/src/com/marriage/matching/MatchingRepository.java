@@ -24,6 +24,11 @@ public class MatchingRepository {
 			pstmt.setString(1, mat.getMenNum());
 			pstmt.setString(2, mat.getWomenNum());
 			pstmt.setInt(3, mat.getManagerNum());
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("\n*** 매칭이 정상 등록되었습니다.");
+			} else {
+				System.out.println("\n*** 회원 등록에 실패하셨습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,6 +44,7 @@ public class MatchingRepository {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();) {
 			while(rs.next()) {
+				if(rs.getString("partner_id") == null) { //파트너가 없는 사람만 보기
 				Member men = new Member(
 						"남자",
 						rs.getString("id"),
@@ -52,6 +58,7 @@ public class MatchingRepository {
 						rs.getInt("manager_num")
 						);
 				System.out.println(men);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +73,7 @@ public class MatchingRepository {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();) {
 			while(rs.next()) {
+				if(rs.getString("partner_id") == null) { //파트너가 없는 사람만 보기
 				Member men = new Member(
 						"여자",
 						rs.getString("id"),
@@ -79,47 +87,86 @@ public class MatchingRepository {
 						rs.getInt("manager_num")
 						);
 				System.out.println(men);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
+	
+	//같은 등급으로 매칭
+	public void searchgrade(Member mem) {
+		String sql = "";
+		String grade = mem.getGrade();
+		
+		if(mem.getId().charAt(0) == 'A') {
+			sql = "SELECT * FROM women WHERE grade = '" + grade + "'" ;
+		} else {
+			sql = "SELECT * FROM men WHERE grade = '" + grade + "'";
+		} 
+		try (Connection conn = connection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();) {
+			while(rs.next()) {
+				if(rs.getString("partner_id") == null) { //파트너가 없는 사람만 보기
+				Member men = new Member(
+						"",
+						rs.getString("id"),
+						rs.getString("name"),
+						rs.getInt("age"),
+						rs.getString("job"),
+						rs.getInt("salary"),
+						rs.getString("grade"),
+						rs.getInt("count"),
+						rs.getString("partner_id"),
+						rs.getInt("manager_num")
+						);
+				System.out.println(men);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//파트너 아이디를 추가해주는 메서드
 	public void addPart(String id , String ptid) {
 		String sql = "";
 		if(id.charAt(0) == 'A') {
-			sql = "UPDATE partner_id = ? FROM men WHERE id = ?";
+			sql = "UPDATE men SET partner_id = ? WHERE id = ?";
 		} else {
-			sql = "UPDATE partner_id = ? FROM women WHERE id = ?";
+			sql = "UPDATE women SET partner_id = ? WHERE id = ?";
 		} 
 		try (Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			pstmt.setString(1, ptid);
 			pstmt.setString(2, id);
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("\n*** 파드너가 정상 등록되었습니다.");
+			} else {
+				System.out.println("\n*** 파트너 등록에 실패하셨습니다.");
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	// 매칭 삭제
-	public void deleteMatching() {
-		System.out.println("매칭을 삭제하실 멤버의");
-		Member delMem = searchMember();
+	public void deleteMatching(Member delMem ) {
 		String delMatid = delMem.getId();
 		String delMatpt = delMem.getPartnerId();
 		String sql = "";
 		if(delMatid.charAt(0) == 'A') {
-			sql = "DELETE FROM matching WHERE men_id =" + delMatid;
+			sql = "DELETE FROM matching WHERE men_id = '" + delMatid + "'";
 		} else {
-			sql = "DELETE FROM matching WHERE women_id =" + delMatid;
+			sql = "DELETE FROM matching WHERE women_id = '" + delMatid + "'";
 		}
 		try(Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);) {
 			if(pstmt.executeUpdate() == 1) {
 				System.out.println("\n### 매칭이 취소 되었습니다.");
-				addPart(delMatid, "NULL");
-				addPart(delMatpt, "NULL");
+				addPart(delMatid, "null");
+				addPart(delMatpt, "null");
 			} else {
 				System.out.println("\n### 검색한 매칭이 없습니다.");
 			}
