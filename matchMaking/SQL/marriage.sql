@@ -1,10 +1,10 @@
 DROP TABLE men;
 
 CREATE TABLE men (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR2(10) PRIMARY KEY,
     name VARCHAR2(20) NOT NULL,
     age NUMBER(3) NOT NULL,
-    job VARCHAR(50) NOT NULL,
+    job VARCHAR2(50) NOT NULL,
     salary NUMBER(15) NOT NULL,
     grade VARCHAR2(20) NOT NULL,
     count NUMBER(1) DEFAULT 3 NULL,
@@ -21,10 +21,10 @@ CREATE SEQUENCE men_seq
 DROP TABLE women;
 
 CREATE TABLE women (
-    id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR2(10) PRIMARY KEY,
     name VARCHAR2(20) NOT NULL,
     age NUMBER(3) NOT NULL,
-    job VARCHAR(50) NOT NULL,
+    job VARCHAR2(50) NOT NULL,
     salary NUMBER(15) NOT NULL,
     grade VARCHAR2(20) NOT NULL,
     count NUMBER(1) DEFAULT 3 NULL,
@@ -42,10 +42,12 @@ DROP TABLE matching;
 
 CREATE TABLE matching (
     match_num NUMBER PRIMARY KEY,
-    men_id VARCHAR(255) UNIQUE NOT NULL,
-    women_id VARCHAR(255) UNIQUE NOT NULL,
+    men_id VARCHAR2(10) UNIQUE NOT NULL,
+    women_id VARCHAR2(10) UNIQUE NOT NULL,
     manager_num NUMBER NOT NULL
 );
+
+DROP SEQUENCE matching_seq;
 
 CREATE SEQUENCE matching_seq
     NOCACHE;
@@ -76,7 +78,7 @@ CREATE SEQUENCE manager_seq
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-101',
+    'A101',
     '김철수',
     28,
     '선생님',
@@ -88,7 +90,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-102',
+    'A102',
     '홍길동',
     30,
     '무직',
@@ -99,7 +101,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-103',
+    'A103',
     '김수현',
     30,
     '학생',
@@ -110,7 +112,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-104',
+    'A104',
     '박서준',
     27,
     '축구선수',
@@ -120,7 +122,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-105',
+    'A105',
     '이현우',
     30,
     'CEO',
@@ -131,7 +133,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-101',
+    'B101',
     '김영희',
     30,
     '사무직',
@@ -142,7 +144,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-102',
+    'B102',
     '김의사',
     33,
     '의사',
@@ -153,7 +155,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-103',
+    'B103',
     '아이유',
     28,
     '기자',
@@ -164,7 +166,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-104',
+    'B104',
     '이혜리',
     25,
     '배우',
@@ -175,7 +177,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-105',
+    'B105',
     '이나영',
     28,
     '선생님',
