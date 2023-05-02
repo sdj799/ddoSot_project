@@ -54,7 +54,7 @@ public class MemberService implements MenuInterface {
 		int age = inputInteger();
 		System.out.print("* 직업 : ");
 		String job = inputString();
-		System.out.print("* 연봉 : ");
+		System.out.print("* 연봉[원] : ");
 		int salary = inputInteger();
 		System.out.println("*************** 매니저 목록 ****************");
 		memberRepository.showManagerList();
@@ -76,7 +76,7 @@ public class MemberService implements MenuInterface {
 	}
 	
 	// 회원 조회 로직
-	private void showMemberList() {
+	public void showMemberList() {
 		System.out.println("*** 성별을 선택 하세요.");
 		System.out.println("[ 1. 남성 | 2. 여성 ]");
 		System.out.print(">>> ");
