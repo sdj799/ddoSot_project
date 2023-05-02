@@ -12,7 +12,10 @@ CREATE TABLE men (
     manager_num NUMBER(3)
 );
 
+DROP SEQUENCE men_seq;
+
 CREATE SEQUENCE men_seq
+    START WITH 106
     NOCACHE;
 
 DROP TABLE women;
@@ -29,7 +32,10 @@ CREATE TABLE women (
     manager_num NUMBER(3)
 );
 
+DROP SEQUENCE women_seq;
+
 CREATE SEQUENCE women_seq
+    START WITH 106
     NOCACHE;
 
 DROP TABLE matching;
@@ -51,8 +57,10 @@ CREATE TABLE manager (
     name VARCHAR2(20) NOT NULL,
     performance NUMBER NULL
 );
+
 DROP SEQUENCE manager_seq;
 CREATE SEQUENCE manager_seq
+    START WITH 4
     NOCACHE;
 
 --ALTER TABLE men ADD FOREIGN KEY(partner_id) REFERENCES matching(women_id);
@@ -68,7 +76,7 @@ CREATE SEQUENCE manager_seq
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-001',
+    'A-101',
     '김철수',
     28,
     '선생님',
@@ -80,7 +88,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-002',
+    'A-102',
     '홍길동',
     30,
     '무직',
@@ -91,7 +99,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-003',
+    'A-103',
     '김수현',
     30,
     '학생',
@@ -102,7 +110,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-004',
+    'A-104',
     '박서준',
     27,
     '축구선수',
@@ -112,7 +120,7 @@ VALUES (
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'A-005',
+    'A-105',
     '이현우',
     30,
     'CEO',
@@ -123,7 +131,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-001',
+    'B-101',
     '김영희',
     30,
     '사무직',
@@ -134,7 +142,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-002',
+    'B-102',
     '김의사',
     33,
     '의사',
@@ -145,7 +153,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-003',
+    'B-103',
     '아이유',
     28,
     '기자',
@@ -156,7 +164,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-004',
+    'B-104',
     '이혜리',
     25,
     '배우',
@@ -167,7 +175,7 @@ VALUES (
 INSERT INTO women
 (id, name, age, job, salary, grade, count, manager_num)
 VALUES (
-    'B-005',
+    'B-105',
     '이나영',
     28,
     '선생님',
@@ -183,4 +191,8 @@ VALUES (2, '강동원', 2);
 INSERT INTO manager
 VALUES (3, '송혜교', 3);
 
+<<<<<<< HEAD
 commit;
+=======
+COMMIT;
+>>>>>>> d3e37dc47ec838c931194a445e6257b4cd9db801
