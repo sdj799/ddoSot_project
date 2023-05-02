@@ -195,8 +195,6 @@ VALUES (2, '강동원', 2);
 INSERT INTO manager
 VALUES (3, '송혜교', 3);
 
-DROP TRIGGER trg_performance;
-
 CREATE OR REPLACE TRIGGER trg_performance
     AFTER INSERT
         ON matching
@@ -210,8 +208,6 @@ BEGIN
     WHERE manager_num = v_manager_num;
 END;
 
-DROP TRIGGER trg_married;
-
 CREATE OR REPLACE TRIGGER trg_married
     AFTER UPDATE
         ON matching
@@ -224,6 +220,3 @@ BEGIN
     UPDATE manager SET performance = performance + 30
     WHERE manager_num = v_manager_num;
 END;
-
-COMMIT;
-

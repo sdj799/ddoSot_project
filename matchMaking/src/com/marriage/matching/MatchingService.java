@@ -1,108 +1,86 @@
 package com.marriage.matching;
 
-import com.marriage.common.MenuInterface;
-import com.marriage.member.domain.Member;
-import com.marriage.member.service.MemberService;
-
 import static com.marriage.view.AppUI.*;
 
+import com.marriage.common.MenuInterface;
+import com.marriage.member.repository.MemberRepository;
 
-
-public class MatchingService implements MenuInterface {
-
-
-	MatchingRepository matRep = new MatchingRepository();
-	MemberService memSer = new MemberService();
+public class MatchingService implements MenuInterface {	
 	
+	private final MemberRepository memberRepository = new MemberRepository();
+	private final MatchingRepository matchingRepository = new MatchingRepository();
 
 	@Override
 	public void start() {
 		while(true) {
-			Member loginMem = new Member();
-//			if(loginMem.getId() == null) {
-//				System.out.println("아이디를 확인해주세요");
-//				continue;
-//			}
 			showMatchingMenu();
 			int select = inputInteger();
 
 			switch (select) {
 			case 1:
-				System.out.println("매칭을 진행할 회원의 정보를 입력해주세요");
-				memSer.showMemberList();
-				loginMem = matRep.searchMember();
-				selectPart1(loginMem);
+				matchingByManager();
 				break;
 			case 2:
-				System.out.println("매칭을 진행할 회원의 정보를 입력해주세요");
-				memSer.showMemberList();
-				loginMem = matRep.searchMember();
-				selectPart2(loginMem);
+				cancelMatching();
 				break;
 			case 3:
-				System.out.println("매칭을 취소할 회원의 정보를 입력해주세요");
-				memSer.showMemberList();
-				loginMem = matRep.searchMember();
-				matRep.deleteMatching(loginMem);
-				break;
+				SuccessMarry();
+				break;		
 			case 4:
-				System.out.println("결혼확정할 회원의 정보를 입력해주세요");
-				memSer.showMemberList();
-				loginMem = matRep.searchMember();
-				matRep.marry(loginMem.getId(), loginMem.getPartnerId());
-				break;
-			case 5:	return;
+				return;
 			default:
 				System.out.println("*** 잘못된 입력입니다.");
 			}
-				System.out.println("\n====== 계속 진행하시려면 ENTER를 누르세요 ======");
-				inputString();
+			System.out.println("\n====== 계속 진행하시려면 ENTER를 누르세요 ======");
+			inputString();
 			
 		}
 
 	}
-
-
 	
-	// 매칭할 상대를 선택하는 매서드
-	public void selectPart1(Member mem) {
-		if(mem.getPartnerId() != null) {
-			System.out.println("현재 파트너가 존재합니다.");
-			return;
-		}
-		String id = mem.getId();
-		String ptid = "";
-		if(mem.getId().charAt(0) == 'A') {
-			matRep.searchWomenID(mem);
-			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
-			ptid= inputString();
-		} else {
-			matRep.searchMenID(mem);
-			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
-			ptid = inputString();
-		}
+	//매니저별로 매칭하는 메서드
+	private void matchingByManager() {
+		memberRepository.showManagerList();
+		System.out.println("*** 매니저를 선택해 주세요.");
+		System.out.print(">>> ");
+		int selectManagerNum = inputInteger();
 		
-		Matching mat = new Matching(1, id, ptid, mem.getManagerNum());
-		matRep.addMatching(mat); // 매칭 db 저장
-		matRep.addPart(id , ptid);
-		matRep.addPart(ptid, mem.getId()); // 파트너 id 저장
+		System.out.println("*************** 남성 리스트 ***************");
+		matchingRepository.searchId(selectManagerNum, true);
+		System.out.println("*** 매칭할 남성의 아이디를 선택해 주세요.");
+		System.out.print(">>> ");
+		String selectMenId = inputString();
+		
+		System.out.println("*************** 여성 리스트 ***************");
+		matchingRepository.searchId(selectManagerNum, false);
+		System.out.println("*** 매칭할 여성의 아이디를 선택해 주세요.");
+		System.out.print(">>> ");
+		String selectWomenId = inputString();
+		
+		matchingRepository.addMatching(selectManagerNum, selectMenId, selectWomenId);
+		matchingRepository.addPart(selectMenId, selectWomenId);
+		
 	}
-	public void selectPart2(Member mem) {
-		if(mem.getPartnerId() != null) {
-			System.out.println("현재 파트너가 존재합니다.");
-			return;
-		}
-		String id = mem.getId();
-		String ptid = "";
+	
+	//매칭 취소하는 메서드
+	private void cancelMatching() {
+		System.out.println("*************** 매칭 기록 ***************");
+		matchingRepository.showMatchingList();
+		System.out.println("*** 취소할 매칭 기록의 번호를 선택해 주세요.");
+		System.out.print(">>> ");
+		int selectNum = inputInteger();
+		matchingRepository.deleteMatching(matchingRepository.selectMatching(selectNum));
 		
-			matRep.searchgrade(mem);
-			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
-			ptid= inputString();
-		
-		Matching mat = new Matching(1, id, ptid, mem.getManagerNum());
-		matRep.addMatching(mat); // 매칭 db 저장
-		matRep.addPart(id , ptid);
-		matRep.addPart(ptid, mem.getId()); // 파트너 id 저장
+	}
+	
+	//결혼을 확정하는 메서드
+	private void SuccessMarry() {
+		System.out.println("*************** 매칭 기록 ***************");
+		matchingRepository.showMatchingList();
+		System.out.println("*** 결혼을 확정할 매칭 기록의 번호를 선택해 주세요.");
+		System.out.print(">>> ");
+		int selectNum = inputInteger();
+		matchingRepository.marry(selectNum);
 	}
 
 }
