@@ -21,18 +21,22 @@ public class MatchingService implements MenuInterface {
 	int i = 0; //  매니저 아이디
 	String grade = ""; // 등급
 	String gender = ""; // 성별
+	
 
 	@Override
 	public void start() {
 		Member loginMem = matRep.searchMember();
 		while(true) {
-//			if(grade == "") continue; //잘못 입력했을때 다시 입력
+//			if(loginMem.getId() == null) {
+//				System.out.println("아이디를 확인해주세요");
+//				continue;
+//			}
 			showMatchingMenu();
 			int select = inputInteger();
 
 			switch (select) {
 			case 1:
-				selectPart(loginMem.getId());
+				selectPart(loginMem);
 				break;
 			case 2:
 				
@@ -54,31 +58,26 @@ public class MatchingService implements MenuInterface {
 
 	}
 
-	// 회원 번호 입력 로직
-	public static String inputId() {
-		System.out.println("회원님의 아이디를 입력하세요");
-		System.out.print(">>>");
-		return inputString();
-
-	}
 
 	
 	// 매칭할 상대를 선택하는 매서드
-	public void selectPart(String id) {
+	public void selectPart(Member mem) {
+		String id = mem.getId();
 		String ptid = "";
 		if(gender.equals("m")) {
-//			matRep.searchMenID();
+			matRep.searchMenID(mem);
 			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
 			ptid= inputString();
 		} else {
-//			matRep.searchWomenID(i);
+			matRep.searchWomenID(mem);
 			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
 			ptid = inputString();
 		}
-		Matching mat = new Matching(1, id, ptid, i);
+		
+		Matching mat = new Matching(1, id, ptid, mem.getManagerNum());
 		matRep.addMatching(mat); // 매칭 db 저장
-//		matRep.addPart(id , ptid);
-//		matRep.addPart(ptid, id); // 파트너 id 저장
+		matRep.addPart(id , ptid);
+		matRep.addPart(ptid, mem.getId()); // 파트너 id 저장
 	}
 
 }
