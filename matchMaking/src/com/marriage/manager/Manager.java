@@ -15,15 +15,12 @@ public class Manager {
 		this.performance = performance;
 	}
 
-<<<<<<< HEAD
+
 	public int getManagerNum() {
-=======
-	public int getManagerId() {
->>>>>>> 080b759dc639b413b4718648df71fd3e22ced7cb
 		return managerNum;
 	}
 
-	public void setManagerId(int managerNum) {
+	public void setManagerNum(int managerNum) {
 		this.managerNum = managerNum;
 	}
 

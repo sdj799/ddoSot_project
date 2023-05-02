@@ -191,8 +191,5 @@ VALUES (2, '강동원', 2);
 INSERT INTO manager
 VALUES (3, '송혜교', 3);
 
-<<<<<<< HEAD
-commit;
-=======
 COMMIT;
->>>>>>> d3e37dc47ec838c931194a445e6257b4cd9db801
+
