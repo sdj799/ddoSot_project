@@ -26,32 +26,32 @@ public class MatchingRepository {
 			e.printStackTrace();
 		}
 	}
-
-	public void searchMenID(Manager m) {
-		String sql = "";
-		sql = "SELECT * FROM men WHERE manager_id =" + m.getManagerId() + ";";
-		try (Connection conn = connection.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();) {
-			while(rs.next()) {
-				Member men = new Member(
-						rs.getString("gender"),
-						rs.getString("id"),
-						rs.getString("name"),
-						rs.getInt("age"),
-						rs.getString("phone_number"),
-						rs.getString("job"),
-						rs.getInt("salary"),
-						rs.getString("grade"),
-						rs.getInt("count"),
-						rs.getString("partener_id")
-						);
-				System.out.println(men);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//
+//	public void searchMenID(Manager m) {
+//		String sql = "";
+//		sql = "SELECT * FROM men WHERE manager_id =" + m.getManagerId() + ";";
+//		try (Connection conn = connection.getConnection();
+//				PreparedStatement pstmt = conn.prepareStatement(sql);
+//				ResultSet rs = pstmt.executeQuery();) {
+//			while(rs.next()) {
+//				Member men = new Member(
+//						rs.getString("gender"),
+//						rs.getString("id"),
+//						rs.getString("name"),
+//						rs.getInt("age"),
+//						rs.getString("phone_number"),
+//						rs.getString("job"),
+//						rs.getInt("salary"),
+//						rs.getString("grade"),
+//						rs.getInt("count"),
+//						rs.getString("partener_id")
+//						);
+//				System.out.println(men);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 
 }

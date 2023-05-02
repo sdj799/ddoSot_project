@@ -1,6 +1,7 @@
 package com.marriage.main;
 
 import com.marriage.common.MenuInterface;
+import com.marriage.manager.ManagerService;
 import com.marriage.member.service.MemberService;
 
 public class AppController {
@@ -17,7 +18,7 @@ public class AppController {
 			
 			break;
 		case 3:
-			
+			service = new ManagerService();
 			break;
 		case 4:
 			System.out.println("*** 프로그램을 종료합니다. ***");
