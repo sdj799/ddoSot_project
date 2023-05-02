@@ -20,11 +20,11 @@ public class MemberRepository {
 		if(member.getGender().equals("남")) {
 			sql = "INSERT INTO men "
 					+ "(id ,name, age, job, salary, manager_num, grade) "
-					+ "VALUES ('A-' || men_seq.NEXTVAL, ?,?,?,?,?,?)";
+					+ "VALUES ('A' || men_seq.NEXTVAL, ?,?,?,?,?,?)";
 		} else {
 			sql = "INSERT INTO women "
 					+ "(id ,name, age, job, salary, manager_num, grade) "
-					+ "VALUES ('B-' || women_seq.NEXTVAL, ?,?,?,?,?,?)";
+					+ "VALUES ('B' || women_seq.NEXTVAL, ?,?,?,?,?,?)";
 		}
 
 		try(Connection conn = connection.getConnection();

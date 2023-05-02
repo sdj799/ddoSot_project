@@ -16,7 +16,7 @@ public class MatchingRepository {
 	//매칭을 DB에 추가하는 로직
 	public void addMatching(Matching mat) {
 		System.out.println("repository: " + mat);
-		String sql = "INSERT INTO users (match_num, men_id, women_id, manager_num) "
+		String sql = "INSERT INTO matching (match_num, men_id, women_id, manager_num) "
 				+ "VALUES(matching_seq.NEXTVAL, ?, ?, ?)";
 
 		try(Connection conn = connection.getConnection();
