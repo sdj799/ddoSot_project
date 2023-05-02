@@ -28,6 +28,7 @@ public class MatchingRepository {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 
 	// 매니저 아이디를 받아서 검색해주는 로직 남자 검색
 	public void searchMenID(Member mem) {
@@ -153,5 +154,34 @@ public class MatchingRepository {
 		}
 		return mem;
 	}
+=======
+//
+//	public void searchMenID(Manager m) {
+//		String sql = "";
+//		sql = "SELECT * FROM men WHERE manager_id =" + m.getManagerId() + ";";
+//		try (Connection conn = connection.getConnection();
+//				PreparedStatement pstmt = conn.prepareStatement(sql);
+//				ResultSet rs = pstmt.executeQuery();) {
+//			while(rs.next()) {
+//				Member men = new Member(
+//						rs.getString("gender"),
+//						rs.getString("id"),
+//						rs.getString("name"),
+//						rs.getInt("age"),
+//						rs.getString("phone_number"),
+//						rs.getString("job"),
+//						rs.getInt("salary"),
+//						rs.getString("grade"),
+//						rs.getInt("count"),
+//						rs.getString("partener_id")
+//						);
+//				System.out.println(men);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+>>>>>>> 578f62de7467ecff4618fb2a678345a9f0ca2836
 
 }

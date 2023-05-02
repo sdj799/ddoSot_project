@@ -57,5 +57,15 @@ public class AppUI {
 		System.out.print(">>> ");
 	}
 	// 매니저 정보 관리 콘솔
+	public static void showManagerMenu() {
+		System.out.println("*************** 매니저 관리 메뉴 ***************");
+		System.out.println("1. 신규매니저 등록");
+		System.out.println("2. 매니저별 남자회원 검색");
+		System.out.println("3. 매니저별 여자회원 검색");
+		System.out.println("4. 매니저별 실적 조회");
+		System.out.println("5. 돌아가기");
+		System.out.println("*******************************************");
+		System.out.print(">>> ");
+	}
 
 }
