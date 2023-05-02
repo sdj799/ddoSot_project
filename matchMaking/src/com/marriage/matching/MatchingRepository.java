@@ -30,8 +30,9 @@ public class MatchingRepository {
 	}
 
 	// 매니저 아이디를 받아서 검색해주는 로직 남자 검색
-	public void searchMenID(int i) {
+	public void searchMenID(Member mem) {
 		String sql = "";
+		int i = mem.getManagerNum();
 		sql = "SELECT * FROM men WHERE manager_id =" + i ;
 		try (Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -56,8 +57,9 @@ public class MatchingRepository {
 		}
 	}
 	// 여성 검색
-	public void searchWomenID(int i) {
+	public void searchWomenID(Member mem) {
 		String sql = "";
+		int i = mem.getManagerNum();
 		sql = "SELECT * FROM women WHERE manager_id =" + i;
 		try (Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -83,8 +85,10 @@ public class MatchingRepository {
 
 	}
 	//파트너 아이디를 추가해주는 메서드
-	public void addPart(String id , String ptid) {
+	public void addPart(Member mem , Member ptMem) {
 		String sql = "";
+		String id = mem.getId();
+		String ptid = ptMem.getId();
 		if(id.charAt(0) == 'A') {
 			sql = "UPDATE partner_id = ? FROM men WHERE id = ?";
 		} else {
@@ -113,6 +117,41 @@ public class MatchingRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 아이디를 받아 맴버를 찾는 메서드
+	public Member searchMember() {
+		System.out.println("아이디를 입력하세요");
+		System.out.print(">>>");
+		String id = inputString();
+		String sql = "";
+		Member mem = new Member();
+		if(id.charAt(0) == 'A') {
+			sql = "SELECT * FROM men WHERE id = '"+ id + "'";
+		} else {
+			sql = "SELECT * FROM women WHERE id = '"+id + "'";
+		}
+		try (Connection conn = connection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();) {
+			while(rs.next()) {
+				mem = new Member(
+						rs.getString("gender"),
+						rs.getString("id"),
+						rs.getString("name"),
+						rs.getInt("age"),
+						rs.getString("job"),
+						rs.getInt("salary"),
+						rs.getString("grade"),
+						rs.getInt("count"),
+						rs.getString("grade"),
+						rs.getInt("managerNum")
+						);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mem;
 	}
 
 }

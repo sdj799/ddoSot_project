@@ -2,6 +2,7 @@ package com.marriage.matching;
 
 import com.marriage.common.DataBaseConnection;
 import com.marriage.common.MenuInterface;
+import com.marriage.member.domain.Member;
 import com.marriage.member.service.MemberService;
 
 import static com.marriage.view.AppUI.*;
@@ -23,8 +24,7 @@ public class MatchingService implements MenuInterface {
 
 	@Override
 	public void start() {
-		String id = inputId();
-		logIn(id);
+		Member loginMem = matRep.searchMember();
 		while(true) {
 //			if(grade == "") continue; //잘못 입력했을때 다시 입력
 			showMatchingMenu();
@@ -32,7 +32,7 @@ public class MatchingService implements MenuInterface {
 
 			switch (select) {
 			case 1:
-				selectPart(id);
+				selectPart(loginMem.getId());
 				break;
 			case 2:
 				
@@ -62,48 +62,23 @@ public class MatchingService implements MenuInterface {
 
 	}
 
-	// 아이디를 받아서 로그인 하는 매서드
-	public void logIn(String id) {
-		String sql = "";
-		if(id.charAt(0) == 'A') {
-			sql = "SELECT * FROM men WHERE id = " +"'"+id+"'";
-			gender = "m";
-		} else if(id.charAt(0) == 'B') {
-			sql = "SELECT * FROM women WHERE id = " +"'"+id+"'";
-			gender = "w";
-		} else {
-			System.out.println("잘못 입력하셨습니다");
-			return;
-		}
-
-		try (Connection conn = connection.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();) {
-			while(rs.next()) {
-				i = rs.getInt("manager_num");
-				grade = rs.getString("grade");
-			}
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	// 매칭할 상대를 선택하는 매서드
 	public void selectPart(String id) {
 		String ptid = "";
 		if(gender.equals("m")) {
-			matRep.searchMenID(i);
+//			matRep.searchMenID();
 			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
 			ptid= inputString();
 		} else {
-			matRep.searchWomenID(i);
+//			matRep.searchWomenID(i);
 			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
 			ptid = inputString();
 		}
 		Matching mat = new Matching(1, id, ptid, i);
 		matRep.addMatching(mat); // 매칭 db 저장
-		matRep.addPart(id , ptid);
-		matRep.addPart(ptid, id); // 파트너 id 저장
+//		matRep.addPart(id , ptid);
+//		matRep.addPart(ptid, id); // 파트너 id 저장
 	}
 
 }
