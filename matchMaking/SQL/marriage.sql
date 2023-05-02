@@ -193,5 +193,31 @@ VALUES (2, '강동원', 2);
 INSERT INTO manager
 VALUES (3, '송혜교', 3);
 
+CREATE OR REPLACE TRIGGER trg_performance
+    AFTER INSERT
+        ON matching
+        FOR EACH ROW
+DECLARE
+    v_manager_num NUMBER;
+BEGIN
+    v_manager_num := :NEW.manager_num;
+
+    UPDATE manager SET performance = performance + 3
+    WHERE manager_num = v_manager_num;
+END;
+
+CREATE OR REPLACE TRIGGER trg_married
+    AFTER UPDATE
+        ON matching
+        FOR EACH ROW
+DECLARE
+    v_manager_num NUMBER;
+BEGIN
+    v_manager_num := :NEW.manager_num;
+
+    UPDATE manager SET performance = performance + 30
+    WHERE manager_num = v_manager_num;
+END;
+
 COMMIT;
 

@@ -47,10 +47,10 @@ public class MatchingService implements MenuInterface {
 			case 5:	return;
 			default:
 				System.out.println("*** 잘못된 입력입니다.");
-
+			}
 				System.out.println("\n====== 계속 진행하시려면 ENTER를 누르세요 ======");
 				inputString();
-			}
+			
 		}
 
 	}
