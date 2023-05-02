@@ -11,19 +11,14 @@ import static com.marriage.view.AppUI.*;
 public class MatchingService implements MenuInterface {
 
 
-
 	MatchingRepository matRep = new MatchingRepository();
 	MemberService memSer = new MemberService();
-
-	int i = 0; //  매니저 아이디
-	String grade = ""; // 등급
-	String gender = ""; // 성별
 	
 
 	@Override
 	public void start() {
-		Member loginMem = matRep.searchMember();
 		while(true) {
+			Member loginMem = new Member();
 //			if(loginMem.getId() == null) {
 //				System.out.println("아이디를 확인해주세요");
 //				continue;
@@ -33,16 +28,28 @@ public class MatchingService implements MenuInterface {
 
 			switch (select) {
 			case 1:
+				System.out.println("매칭을 진행할 회원의 정보를 입력해주세요");
+				memSer.showMemberList();
+				loginMem = matRep.searchMember();
 				selectPart1(loginMem);
 				break;
 			case 2:
+				System.out.println("매칭을 진행할 회원의 정보를 입력해주세요");
+				memSer.showMemberList();
+				loginMem = matRep.searchMember();
 				selectPart2(loginMem);
 				break;
 			case 3:
+				System.out.println("매칭을 취소할 회원의 정보를 입력해주세요");
+				memSer.showMemberList();
+				loginMem = matRep.searchMember();
 				matRep.deleteMatching(loginMem);
 				break;
 			case 4:
-				
+				System.out.println("결혼확정할 회원의 정보를 입력해주세요");
+				memSer.showMemberList();
+				loginMem = matRep.searchMember();
+				matRep.marry(loginMem.getId(), loginMem.getPartnerId());
 				break;
 			case 5:	return;
 			default:
@@ -59,14 +66,18 @@ public class MatchingService implements MenuInterface {
 	
 	// 매칭할 상대를 선택하는 매서드
 	public void selectPart1(Member mem) {
+		if(mem.getPartnerId() != null) {
+			System.out.println("현재 파트너가 존재합니다.");
+			return;
+		}
 		String id = mem.getId();
 		String ptid = "";
-		if(gender.equals("m")) {
-			matRep.searchMenID(mem);
+		if(mem.getId().charAt(0) == 'A') {
+			matRep.searchWomenID(mem);
 			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
 			ptid= inputString();
 		} else {
-			matRep.searchWomenID(mem);
+			matRep.searchMenID(mem);
 			System.out.print("매칭할 상대의 아이디를 입력해주세요: ");
 			ptid = inputString();
 		}
@@ -77,6 +88,10 @@ public class MatchingService implements MenuInterface {
 		matRep.addPart(ptid, mem.getId()); // 파트너 id 저장
 	}
 	public void selectPart2(Member mem) {
+		if(mem.getPartnerId() != null) {
+			System.out.println("현재 파트너가 존재합니다.");
+			return;
+		}
 		String id = mem.getId();
 		String ptid = "";
 		

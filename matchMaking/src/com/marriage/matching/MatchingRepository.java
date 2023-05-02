@@ -27,7 +27,7 @@ public class MatchingRepository {
 			if(pstmt.executeUpdate() == 1) {
 				System.out.println("\n*** 매칭이 정상 등록되었습니다.");
 			} else {
-				System.out.println("\n*** 회원 등록에 실패하셨습니다.");
+				System.out.println("\n*** 회원 등록에 실패하였습니다.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,9 +142,9 @@ public class MatchingRepository {
 			pstmt.setString(1, ptid);
 			pstmt.setString(2, id);
 			if(pstmt.executeUpdate() == 1) {
-				System.out.println("\n*** 파드너가 정상 등록되었습니다.");
+				System.out.println("\n*** 파트너가 정상 등록되었습니다.");
 			} else {
-				System.out.println("\n*** 파트너 등록에 실패하셨습니다.");
+				System.out.println("\n*** 파트너 등록에 실패하였습니다.");
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -210,5 +210,29 @@ public class MatchingRepository {
 		System.out.println(mem);
 		return mem;
 	}
-
+	// 결혼 확정 메서드
+	public void marry(String id , String ptid) {
+		if(ptid == null) {
+			System.out.println("파트너가 없습니다.");
+			return;
+		}
+		String sql = "";
+		if(id.charAt(0) == 'A') {
+			sql = "UPDATE matching SET married = ? WHERE men_id = ?";
+		} else {
+			sql = "UPDATE matching SET married = ? WHERE women_id = ?";
+		} 
+		try (Connection conn = connection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			pstmt.setString(1, "O");
+			pstmt.setString(2, id);
+			if(pstmt.executeUpdate() == 1) {
+				System.out.println("\n### 결혼을 축하합니다");
+			} else {
+				System.out.println("\n### 결혼등록에 실패하였습니다.");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

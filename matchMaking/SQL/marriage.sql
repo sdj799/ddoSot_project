@@ -44,7 +44,8 @@ CREATE TABLE matching (
     match_num NUMBER PRIMARY KEY,
     men_id VARCHAR2(10) UNIQUE NOT NULL,
     women_id VARCHAR2(10) UNIQUE NOT NULL,
-    manager_num NUMBER NOT NULL
+    manager_num NUMBER NOT NULL,
+    married VARCHAR2(2) NULL
 );
 
 DROP SEQUENCE matching_seq;
@@ -118,6 +119,7 @@ VALUES (
     '축구선수',
     30000000,
     '골드',
+    3,
     3);
 INSERT INTO men
 (id, name, age, job, salary, grade, count, manager_num)
@@ -193,6 +195,8 @@ VALUES (2, '강동원', 2);
 INSERT INTO manager
 VALUES (3, '송혜교', 3);
 
+DROP TRIGGER trg_performance;
+
 CREATE OR REPLACE TRIGGER trg_performance
     AFTER INSERT
         ON matching
@@ -206,6 +210,8 @@ BEGIN
     WHERE manager_num = v_manager_num;
 END;
 
+DROP TRIGGER trg_married;
+
 CREATE OR REPLACE TRIGGER trg_married
     AFTER UPDATE
         ON matching
@@ -213,7 +219,7 @@ CREATE OR REPLACE TRIGGER trg_married
 DECLARE
     v_manager_num NUMBER;
 BEGIN
-    v_manager_num := :NEW.manager_num;
+    v_manager_num := :OLD.manager_num;
 
     UPDATE manager SET performance = performance + 30
     WHERE manager_num = v_manager_num;
