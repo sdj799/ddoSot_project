@@ -42,7 +42,7 @@ public class Manager {
 
 	@Override
 	public String toString() {
-		return "Manager [매니저번호: " + managerNum + ", 매니저이름: " + managerName + ", 실적: " + performance
+		return "[매니저번호: " + managerNum + ", 매니저이름: " + managerName + ", 실적: " + performance
 				+ "]";
 	}
 	

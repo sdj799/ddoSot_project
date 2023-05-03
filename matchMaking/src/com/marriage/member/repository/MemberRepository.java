@@ -102,7 +102,7 @@ public class MemberRepository {
 						rs.getString("partner_id"),
 						rs.getInt("manager_num")
 						);
-				System.out.println(member);
+				System.out.println(member);				
 			}
 
 		} catch (Exception e) {
