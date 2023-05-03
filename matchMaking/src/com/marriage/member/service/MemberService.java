@@ -2,6 +2,7 @@ package com.marriage.member.service;
 
 import static com.marriage.view.AppUI.*;
 
+import static com.marriage.common.DeleteDoubleCheck.deleteDoubleCheck;
 import com.marriage.common.MenuInterface;
 import static com.marriage.matching.MatchingGrade.*;
 import com.marriage.member.domain.Member;
@@ -96,6 +97,13 @@ public class MemberService implements MenuInterface {
 		System.out.println("*** 삭제할 회원의 아이디를 입력해 주세요.");
 		System.out.print(">>> ");
 		String id = inputString();
+		if(deleteDoubleCheck() == 2) {
+			System.out.println("*** 삭제를 취소합니다.");
+			return;
+		} else if(deleteDoubleCheck() == 3) {
+			System.out.println("*** 잘못된 입력입니다.");
+			return;
+		}
 		memberRepository.modifyMemberInfo(id, select);
 	}
 }

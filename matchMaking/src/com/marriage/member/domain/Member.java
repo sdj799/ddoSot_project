@@ -112,9 +112,17 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "[id=" + id + ", name=" + name + ", age=" + age + ", job=" + job
-				+ ", salary=" + salary + ", grade=" + grade + ", count=" + count + ", partnerId=" + partnerId
-				+ ", managerNum=" + managerNum + "]";
+		String partner;
+		if(partnerId == null) {
+			partner = "없음";
+		} else {
+			partner = partnerId;
+		}
+		
+		return "아이디: " + id + "\t이름: " + name + "\t나이: " + age
+				+ "세\n직업: " + job + "\t연봉: " + salary + "원\t등급: " + grade
+				+ "\n남은 맞선 횟수: " + count + "회\t파트너아이디: " + partner + "\t담당 매니저 번호: " + managerNum
+				+ "\n******************************************";
 	}
 	
 	
