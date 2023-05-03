@@ -97,13 +97,14 @@ public class MemberService implements MenuInterface {
 		System.out.println("*** 삭제할 회원의 아이디를 입력해 주세요.");
 		System.out.print(">>> ");
 		String id = inputString();
-		if(deleteDoubleCheck() == 2) {
-			System.out.println("*** 삭제를 취소합니다.");
-			return;
-		} else if(deleteDoubleCheck() == 3) {
-			System.out.println("*** 잘못된 입력입니다.");
-			return;
-		}
+		int checkNum = deleteDoubleCheck();
+		if(checkNum == 2) {
+            System.out.println("*** 삭제를 취소합니다.");
+            return;
+        } else if(checkNum == 3) {
+            System.out.println("*** 잘못된 입력입니다.");
+            return;
+        }
 		memberRepository.modifyMemberInfo(id, select);
 	}
 }

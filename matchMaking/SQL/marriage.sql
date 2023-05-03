@@ -221,7 +221,7 @@ BEGIN
     WHERE manager_num = v_manager_num;
 END;
 
-CREATE OR REPLACE TRIGGER trg_count
+CREATE OR REPLACE TRIGGER trg_men_count
     AFTER INSERT
         ON matching
         FOR EACH ROW
@@ -231,5 +231,18 @@ BEGIN
     v_id := :NEW.men_id;
     
     UPDATE men SET count = count - 1
+    WHERE id = v_id;
+END;
+
+CREATE OR REPLACE TRIGGER trg_women_count
+    AFTER INSERT
+        ON matching
+        FOR EACH ROW
+DECLARE
+    v_id VARCHAR2(10);
+BEGIN
+    v_id := :NEW.women_id;
+    
+    UPDATE women SET count = count - 1
     WHERE id = v_id;
 END;

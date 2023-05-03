@@ -2,6 +2,7 @@ package com.marriage.matching;
 
 import static com.marriage.view.AppUI.*;
 
+import static com.marriage.common.DeleteDoubleCheck.*;
 import com.marriage.common.MenuInterface;
 import com.marriage.member.repository.MemberRepository;
 
@@ -72,10 +73,11 @@ public class MatchingService implements MenuInterface {
 		System.out.println("*** 취소할 매칭 기록의 번호를 선택해 주세요.");
 		System.out.print(">>> ");
 		int selectNum = inputInteger();
-		if(deleteDoubleCheck() == 2) {
-            System.out.println("*** 삭제를 취소합니다.");
+		int checkNum = deleteDoubleCheck();
+		if(checkNum == 2) {
+            System.out.println("*** 매칭삭제를 취소합니다.");
             return;
-        } else if(deleteDoubleCheck() == 3) {
+        } else if(checkNum == 3) {
             System.out.println("*** 잘못된 입력입니다.");
             return;
         }
@@ -92,14 +94,15 @@ public class MatchingService implements MenuInterface {
 		};
 		System.out.println("*** 결혼을 확정할 매칭 기록의 번호를 선택해 주세요.");
 		System.out.print(">>> ");
-		if(deleteDoubleCheck() == 2) {
+		int selectNum = inputInteger();
+		int checkNum = deleteDoubleCheck();
+		if(checkNum == 2) {
             System.out.println("*** 결혼을 취소합니다.");
             return;
-        } else if(deleteDoubleCheck() == 3) {
+        } else if(checkNum == 3) {
             System.out.println("*** 잘못된 입력입니다.");
             return;
         }
-		int selectNum = inputInteger();
 		matchingRepository.marry(selectNum);
 	}
 
