@@ -15,7 +15,7 @@ CREATE TABLE men (
 DROP SEQUENCE men_seq;
 
 CREATE SEQUENCE men_seq
-    START WITH 106
+    START WITH 111
     NOCACHE;
 
 DROP TABLE women;
@@ -35,7 +35,7 @@ CREATE TABLE women (
 DROP SEQUENCE women_seq;
 
 CREATE SEQUENCE women_seq
-    START WITH 106
+    START WITH 111
     NOCACHE;
 
 DROP TABLE matching;
@@ -51,6 +51,7 @@ CREATE TABLE matching (
 DROP SEQUENCE matching_seq;
 
 CREATE SEQUENCE matching_seq
+    START WITH 3
     NOCACHE;
 
 DROP TABLE manager;
@@ -62,131 +63,41 @@ CREATE TABLE manager (
 );
 
 DROP SEQUENCE manager_seq;
+
 CREATE SEQUENCE manager_seq
     START WITH 4
     NOCACHE;
 
---ALTER TABLE men ADD FOREIGN KEY(partner_id) REFERENCES matching(women_id);
---
---ALTER TABLE women ADD FOREIGN KEY(partner_id) REFERENCES matching(men_id);
---
---ALTER TABLE matching ADD FOREIGN KEY(men_id) REFERENCES men(id);
---
---ALTER TABLE matching ADD FOREIGN KEY(women_id) REFERENCES women(id);
---
---ALTER TABLE matching ADD FOREIGN KEY(manager_num) REFERENCES manager(manager_num);
 
-INSERT INTO men
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'A101',
-    '김철수',
-    28,
-    '선생님',
-    60000000,
-    '골드',
-    3,
-    1);
-    
-INSERT INTO men
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'A102',
-    '홍길동',
-    30,
-    '무직',
-    0,
-    '골드',
-    3,
-    2);
-INSERT INTO men
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'A103',
-    '김수현',
-    30,
-    '학생',
-    0,
-    '브론즈',
-    3,
-    3);
-INSERT INTO men
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'A104',
-    '박서준',
-    27,
-    '축구선수',
-    30000000,
-    '골드',
-    3,
-    3);
-INSERT INTO men
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'A105',
-    '이현우',
-    30,
-    'CEO',
-    1000000000,
-    '다이아',
-    3,
-    1);
-INSERT INTO women
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'B101',
-    '김영희',
-    30,
-    '사무직',
-    50000000,
-    '골드',
-    3,
-    2);
-INSERT INTO women
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'B102',
-    '김의사',
-    33,
-    '의사',
-    80000000,
-    '다이아',
-    3,
-    3);
-INSERT INTO women
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'B103',
-    '아이유',
-    28,
-    '기자',
-    4000000,
-    '골드',
-    3,
-    1);
-INSERT INTO women
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'B104',
-    '이혜리',
-    25,
-    '배우',
-    30000000,
-    '골드',
-    3,
-    2);
-INSERT INTO women
-(id, name, age, job, salary, grade, count, manager_num)
-VALUES (
-    'B105',
-    '이나영',
-    28,
-    '선생님',
-    40000000,
-    '골드',
-    3,
-    3);
+
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num, partner_id) VALUES ('A101', '김철수', 28, '선생님',60000000, '골드', 2,  1, 'B101');
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A102', '홍길동', 30, '무직',1000000, '골드', 3, 2);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A103', '김수현', 30, '학생',2000000, '브론즈', 3, 3);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A104', '이현우', 30, 'CEO',1000000000, '다이아', 3, 3);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A105', '김형준', 48, '대기업부장',100000000, '다이아', 3, 2);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num, partner_id) VALUES ('A106', '박수민', 37, '자영업자',200000000, '골드', 2, 2, 'B105');
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A107', '민용기', 44, '카페사장',50000000, '브론즈', 3, 2);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A108', '최민수', 34, '중소기업팀장',60000000, '브론즈', 2, 3);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A109', '임현창', 40, 'IT소프트웨어부장',80000000, '브론즈', 2, 1);
+INSERT INTO men (id, name, age, job, salary, grade, count, manager_num) VALUES ('A110', '고규민', 32, '대기업사원',60000000, '골드', 3, 2);
+
+
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num, partner_id) VALUES ('B101', '김영희', 30, '사무직',50000000, '골드', 2, 1, 'A101');
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B102', '김의사', 33, '의사',80000000, '다이아', 3, 3);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B103', '아이유', 28, '기자',4000000, '골드', 3, 1);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B104', '이혜리', 25, '배우',30000000, '골드', 3, 1);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num, partner_id) VALUES ('B105', '이나영', 28, '선생님',40000000, '골드', 2, 2, 'A106');
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B106', '김현지', 40, '경리',30000000, '브론즈', 2, 2);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B107', '심원경', 44, '중소기업팀장',100000000, '다이아', 2, 3);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B108', '신나정', 30, '승무원',50000000, '골드', 1, 3);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B109', '박연수', 28, '어린이집교사',40000000, '브론즈', 3, 1);
+INSERT INTO women (id, name, age, job, salary, grade, count, manager_num) VALUES ('B110', '김은혜', 32, '무직',1000000, '브론즈', 3, 1);
+
+INSERT INTO matching (match_num, men_id, women_id, manager_num)
+VALUES (1, 'A101', 'B101', 1);
+INSERT INTO matching (match_num, men_id, women_id, manager_num)
+VALUES (2, 'A106', 'B105', 2);
+
 
 INSERT INTO manager
 VALUES (1, '원빈', 3);
@@ -195,54 +106,7 @@ VALUES (2, '강동원', 2);
 INSERT INTO manager
 VALUES (3, '송혜교', 3);
 
-CREATE OR REPLACE TRIGGER trg_performance
-    AFTER INSERT
-        ON matching
-        FOR EACH ROW
-DECLARE
-    v_manager_num NUMBER;
-BEGIN
-    v_manager_num := :NEW.manager_num;
 
-    UPDATE manager SET performance = performance + 3
-    WHERE manager_num = v_manager_num;
-END;
 
-CREATE OR REPLACE TRIGGER trg_married
-    AFTER UPDATE
-        ON matching
-        FOR EACH ROW
-DECLARE
-    v_manager_num NUMBER;
-BEGIN
-    v_manager_num := :OLD.manager_num;
 
-    UPDATE manager SET performance = performance + 30
-    WHERE manager_num = v_manager_num;
-END;
-
-CREATE OR REPLACE TRIGGER trg_men_count
-    AFTER INSERT
-        ON matching
-        FOR EACH ROW
-DECLARE
-    v_id VARCHAR2(10);
-BEGIN
-    v_id := :NEW.men_id;
-    
-    UPDATE men SET count = count - 1
-    WHERE id = v_id;
-END;
-
-CREATE OR REPLACE TRIGGER trg_women_count
-    AFTER INSERT
-        ON matching
-        FOR EACH ROW
-DECLARE
-    v_id VARCHAR2(10);
-BEGIN
-    v_id := :NEW.women_id;
-    
-    UPDATE women SET count = count - 1
-    WHERE id = v_id;
-END;
+COMMIT;

@@ -48,7 +48,7 @@ public class MemberService implements MenuInterface {
 		System.out.print("* 성별[남/여] : ");
 		String gender = inputString();
 		if(!gender.equals("남") && !gender.equals("여")) {
-			System.out.println("성별을 제대로 입력 해 주세요.");
+			System.out.println("성별을 제대로 입력 해주세요.");
 			return;
 		}
 		System.out.print("* 나이 : ");

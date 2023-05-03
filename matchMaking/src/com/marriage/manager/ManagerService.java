@@ -29,9 +29,6 @@ public class ManagerService implements MenuInterface {
 				showWomenResult();
 				break;
 			case 4:
-				showManagerPerformance();
-				break;
-			case 5:
 				return;
 			default:
 				System.out.println("*** 잘못된 입력입니다.");
@@ -59,6 +56,7 @@ public class ManagerService implements MenuInterface {
 	
 	//매니저별 남자회원 검색 로직
 	private List<Member> searchMenMember() {
+		showManagerPerformance();
 		System.out.println("****** 담당 매니저 번호를 입력하세요.");
 		System.out.print("* 매니저번호 : ");
 		int managerNum = inputInteger();
@@ -83,6 +81,7 @@ public class ManagerService implements MenuInterface {
 	
 	//매니저별 여자회원 검색 로직
 	private List<Member> searchWomenMember() {
+		showManagerPerformance();
 		System.out.println("****** 담당 매니저 번호를 입력하세요.");
 		System.out.print("* 매니저번호 : ");
 		int managerNum = inputInteger();
@@ -102,12 +101,12 @@ public class ManagerService implements MenuInterface {
 		}
 	}
 	
-	//매니저별 실적 조회 로직
+	//매니저별 목록 조회 로직
 	private void showManagerPerformance() {
 		List<Manager> managers = managerRepository.performanceList();
 		
 		if(!managers.isEmpty()) {
-			System.out.println("\n****** 매니저별 실적 조회");
+			System.out.println("\n****** 매니저 목록 조회");
 			for(Manager manager : managers) {
 				System.out.println(manager);
 			}

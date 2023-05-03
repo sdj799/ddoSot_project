@@ -36,8 +36,9 @@ public class MatchingRepository {
 
 
 	// 매니저 아이디를 받아서 검색해주는 로직
-	public void searchId(int managerNum, boolean gender) {
+	public boolean searchId(int managerNum, boolean gender) {
 		String sql = "";
+		boolean flag = false;
 		if(gender) {
 			sql = "SELECT * FROM men WHERE partner_id IS NULL AND manager_num = ? AND count > 0";
 		} else {
@@ -61,10 +62,11 @@ public class MatchingRepository {
 						rs.getInt("manager_num")
 						);
 				System.out.println(member);
+				flag = true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} return flag;
 	}
 	
 	// 매칭된 리스트를 보여주는 메서드
@@ -254,7 +256,7 @@ public class MatchingRepository {
 //	}
 	// 결혼 확정 메서드
 	public void marry(int i) {
-        String sql = "UPDATE matching SET married = ? WHERE match_num = ?";
+        String sql = "UPDATE matching SET married = ? WHERE match_num = ? AND married IS NULL";
         try (Connection conn = connection.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);) {
             pstmt.setString(1, "O");

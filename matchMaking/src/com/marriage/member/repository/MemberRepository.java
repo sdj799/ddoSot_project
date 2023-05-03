@@ -136,5 +136,25 @@ public class MemberRepository {
 		}
 		
 	}
+	
+	public boolean searchById(String id, boolean gender) {
+		String sql = "";
+		boolean flag = false;
+		if(gender) {
+			sql = "SELECT * FROM men WHERE id = ?";
+		} else {
+			sql = "SELECT * FROM women WHERE id = ?";			
+		}
+		try(Connection conn = connection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) flag = true;
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return flag;
+	}
 
 }

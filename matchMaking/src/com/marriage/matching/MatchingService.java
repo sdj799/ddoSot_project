@@ -47,16 +47,31 @@ public class MatchingService implements MenuInterface {
 		int selectManagerNum = inputInteger();
 		
 		System.out.println("*************** 남성 리스트 ***************");
-		matchingRepository.searchId(selectManagerNum, true);
+		if(!matchingRepository.searchId(selectManagerNum, true)) {
+			System.out.println("매니저가 가지고 있는 남성리스트가 없습니다.");
+			System.out.println("남자회원을 먼저 추가해주세요.");
+			return;
+		}
 		System.out.println("*** 매칭할 남성의 아이디를 선택해 주세요.");
 		System.out.print(">>> ");
 		String selectMenId = inputString();
-		
+		if(!memberRepository.searchById(selectMenId, true)) {
+			System.out.println("아이디를 확인해주세요");
+			return;
+		}
 		System.out.println("*************** 여성 리스트 ***************");
-		matchingRepository.searchId(selectManagerNum, false);
+		if(!matchingRepository.searchId(selectManagerNum, false)) {
+			System.out.println("매니저가 가지고 있는 여성리스트가 없습니다.");
+			System.out.println("여성회원을 먼저 추가해주세요.");
+			return;
+		}
 		System.out.println("*** 매칭할 여성의 아이디를 선택해 주세요.");
 		System.out.print(">>> ");
 		String selectWomenId = inputString();
+		if(!memberRepository.searchById(selectWomenId, false)) {
+			System.out.println("아이디를 확인해주세요");
+			return;
+		};
 		
 		matchingRepository.addMatching(selectManagerNum, selectMenId, selectWomenId);
 		matchingRepository.addPart(selectMenId, selectWomenId);
@@ -95,7 +110,7 @@ public class MatchingService implements MenuInterface {
 		System.out.println("*** 결혼을 확정할 매칭 기록의 번호를 선택해 주세요.");
 		System.out.print(">>> ");
 		int selectNum = inputInteger();
-		int checkNum = deleteDoubleCheck();
+		int checkNum = doubleCheck();
 		if(checkNum == 2) {
             System.out.println("*** 결혼을 취소합니다.");
             return;

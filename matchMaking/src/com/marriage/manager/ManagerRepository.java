@@ -105,7 +105,7 @@ public class ManagerRepository {
 	//매니저별 실적 조회
 	public List<Manager> performanceList() {
 		List<Manager> performList = new ArrayList<>();
-		String sql = "SELECT * FROM manager ORDER BY performance DESC";
+		String sql = "SELECT * FROM manager";
 		try (Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			ResultSet rs = pstmt.executeQuery();
