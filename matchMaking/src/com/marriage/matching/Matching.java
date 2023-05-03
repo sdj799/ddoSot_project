@@ -50,8 +50,8 @@ public class Matching {
 
 	@Override
 	public String toString() {
-		return "매칭결과 [매칭번호=" + matchNo + ", 남자번호=" + menNum + ", 여자번호=" + womenNum + ", 매니저번호="
-				+ managerNum + "]";
+		return "매칭번호: " + matchNo + "\t남자번호: " + menNum + "\t여자번호: " + womenNum + "\t매니저번호: "
+				+ managerNum;
 	}
 	
 	

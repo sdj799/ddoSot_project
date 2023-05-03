@@ -93,7 +93,7 @@ public class ManagerService implements MenuInterface {
 		List<Member> women = searchWomenMember();
 		
 		if(!women.isEmpty()) {
-			System.out.println("\n****** 남자 회원 조회 결과");
+			System.out.println("\n****** 여자 회원 조회 결과");
 			for(Member member : women) {
 				System.out.println(member);
 			}

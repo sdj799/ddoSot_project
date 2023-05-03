@@ -35,13 +35,13 @@ public class MatchingRepository {
 	}
 
 
-	// 매니저 아이디를 받아서 검색해주는 로직 남자 검색
+	// 매니저 아이디를 받아서 검색해주는 로직
 	public void searchId(int managerNum, boolean gender) {
 		String sql = "";
 		if(gender) {
-			sql = "SELECT * FROM men WHERE partner_id IS NULL AND manager_num = ?";
+			sql = "SELECT * FROM men WHERE partner_id IS NULL AND manager_num = ? AND count > 0";
 		} else {
-			sql = "SELECT * FROM women WHERE partner_id IS NULL AND manager_num = ?";
+			sql = "SELECT * FROM women WHERE partner_id IS NULL AND manager_num = ? AND count > 0";
 		}
 		try(Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -68,8 +68,9 @@ public class MatchingRepository {
 	}
 	
 	// 매칭된 리스트를 보여주는 메서드
-	public void showMatchingList() {
+	public boolean showMatchingList() {
         String sql = "SELECT * FROM matching WHERE married IS NULL";
+        boolean flag = false;
         try (Connection conn = connection.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 ResultSet rs = pstmt.executeQuery();){
@@ -81,10 +82,12 @@ public class MatchingRepository {
                         rs.getInt("manager_num")
                         );
                 System.out.println(mat);
+                flag = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return flag;
     }
 	
 //	//같은 등급으로 매칭

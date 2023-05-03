@@ -73,7 +73,7 @@ public class ManagerRepository {
 	//매니저별 담당 여자회원 조회
 	public List<Member> womenByManagerList(int managerNum) {
 		List<Member> womenList = new ArrayList<>();
-		String sql = "SELECT * FROM men WHERE manager_num = ?";
+		String sql = "SELECT * FROM women WHERE manager_num = ?";
 		try (Connection conn = connection.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setInt(1, managerNum);

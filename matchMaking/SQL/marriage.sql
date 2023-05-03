@@ -220,3 +220,16 @@ BEGIN
     UPDATE manager SET performance = performance + 30
     WHERE manager_num = v_manager_num;
 END;
+
+CREATE OR REPLACE TRIGGER trg_count
+    AFTER INSERT
+        ON matching
+        FOR EACH ROW
+DECLARE
+    v_id VARCHAR2(10);
+BEGIN
+    v_id := :NEW.men_id;
+    
+    UPDATE men SET count = count - 1
+    WHERE id = v_id;
+END;

@@ -65,10 +65,20 @@ public class MatchingService implements MenuInterface {
 	//매칭 취소하는 메서드
 	private void cancelMatching() {
 		System.out.println("*************** 매칭 기록 ***************");
-		matchingRepository.showMatchingList();
+		if(!matchingRepository.showMatchingList()) {
+			System.out.println("*** 현재 매칭중인 커플이 없습니다.");
+			return;
+		};
 		System.out.println("*** 취소할 매칭 기록의 번호를 선택해 주세요.");
 		System.out.print(">>> ");
 		int selectNum = inputInteger();
+		if(deleteDoubleCheck() == 2) {
+            System.out.println("*** 삭제를 취소합니다.");
+            return;
+        } else if(deleteDoubleCheck() == 3) {
+            System.out.println("*** 잘못된 입력입니다.");
+            return;
+        }
 		matchingRepository.deleteMatching(matchingRepository.selectMatching(selectNum));
 		
 	}
@@ -76,9 +86,19 @@ public class MatchingService implements MenuInterface {
 	//결혼을 확정하는 메서드
 	private void SuccessMarry() {
 		System.out.println("*************** 매칭 기록 ***************");
-		matchingRepository.showMatchingList();
+		if(!matchingRepository.showMatchingList()) {
+			System.out.println("*** 현재 매칭중인 커플이 없습니다.");
+			return;
+		};
 		System.out.println("*** 결혼을 확정할 매칭 기록의 번호를 선택해 주세요.");
 		System.out.print(">>> ");
+		if(deleteDoubleCheck() == 2) {
+            System.out.println("*** 결혼을 취소합니다.");
+            return;
+        } else if(deleteDoubleCheck() == 3) {
+            System.out.println("*** 잘못된 입력입니다.");
+            return;
+        }
 		int selectNum = inputInteger();
 		matchingRepository.marry(selectNum);
 	}
