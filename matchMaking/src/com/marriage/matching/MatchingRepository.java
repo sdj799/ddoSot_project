@@ -15,7 +15,7 @@ public class MatchingRepository {
 	private DataBaseConnection connection = DataBaseConnection.getInstance();
 
 	//매칭을 DB에 추가하는 로직
-	public void addMatching(int managerNum, String menId, String womenId) {
+	public boolean addMatching(int managerNum, String menId, String womenId) {
 		String sql = "INSERT INTO matching (match_num, men_id, women_id, manager_num) "
 				+ "VALUES(matching_seq.NEXTVAL, ?, ?, ?)";
 
@@ -28,10 +28,12 @@ public class MatchingRepository {
 				System.out.println("\n*** 매칭이 정상 등록되었습니다.");
 			} else {
 				System.out.println("\n*** 매칭 등록에 실패하였습니다.");
+				return false;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {			
+			return false;
 		}
+		return true;
 	}
 
 

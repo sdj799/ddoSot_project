@@ -156,5 +156,25 @@ public class MemberRepository {
 			e.printStackTrace();
 		} return flag;
 	}
+	//매니저가 가지고 있는지 확인
+	public boolean searchByManager(String id, int manigerNum, boolean gender) {
+		String sql = "";
+		boolean flag = false;
+		if(gender) {
+			sql = "SELECT * FROM men WHERE id = ? AND manager_num = ?";
+		} else {
+			sql = "SELECT * FROM women WHERE id = ? AND manager_num = ?";			
+		}
+		try(Connection conn = connection.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			pstmt.setInt(2, manigerNum);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) flag = true;
+			
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return flag;
+	}
 }

@@ -59,6 +59,10 @@ public class MatchingService implements MenuInterface {
 			System.out.println("아이디를 확인해주세요");
 			return;
 		}
+		if(!memberRepository.searchByManager(selectMenId, selectManagerNum, true)) {
+			System.out.println("매니저가 담당하는 회원이 아닙니다.");
+			return;
+		}
 		System.out.println("*************** 여성 리스트 ***************");
 		if(!matchingRepository.searchId(selectManagerNum, false)) {
 			System.out.println("매니저가 가지고 있는 여성리스트가 없습니다.");
@@ -72,8 +76,14 @@ public class MatchingService implements MenuInterface {
 			System.out.println("아이디를 확인해주세요");
 			return;
 		};
-		
-		matchingRepository.addMatching(selectManagerNum, selectMenId, selectWomenId);
+		if(!memberRepository.searchByManager(selectWomenId, selectManagerNum, false)) {
+			System.out.println("매니저가 담당하는 회원이 아닙니다.");
+			return;
+		}
+		if(!matchingRepository.addMatching(selectManagerNum, selectMenId, selectWomenId)) {
+			System.out.println("없는 회원이거나 다른 매니저가 담당 중인 회원입니다.");
+			return;
+		}
 		matchingRepository.addPart(selectMenId, selectWomenId);
 		
 	}
