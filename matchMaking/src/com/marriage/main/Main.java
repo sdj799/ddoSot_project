@@ -11,7 +11,11 @@ public class Main {
 		while(true) {
 			showMainMenu();
 			int selectNum = inputInteger();
+			try {
 			appController.selectMainMenu(selectNum);
+			} catch(NullPointerException e) {
+				
+			}
 		}
 		
 
