@@ -42,10 +42,7 @@ public class MemberRepository {
 				System.out.println("\n*** 회원 등록에 실패하셨습니다.");
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 	}
@@ -68,7 +65,6 @@ public class MemberRepository {
 				}
 				
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 			
 		}
@@ -106,7 +102,6 @@ public class MemberRepository {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -153,7 +148,6 @@ public class MemberRepository {
 			
 
 		} catch (Exception e) {
-			e.printStackTrace();
 		} return flag;
 	}
 	//매니저가 가지고 있는지 확인
@@ -174,7 +168,6 @@ public class MemberRepository {
 			
 
 		} catch (Exception e) {
-			e.printStackTrace();
 		} return flag;
 	}
 }

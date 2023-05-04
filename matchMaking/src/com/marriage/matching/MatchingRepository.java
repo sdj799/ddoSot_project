@@ -67,7 +67,6 @@ public class MatchingRepository {
 				flag = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		} return flag;
 	}
 	
@@ -89,7 +88,6 @@ public class MatchingRepository {
                 flag = true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return flag;
     }
@@ -142,7 +140,6 @@ public class MatchingRepository {
 				System.out.println("\n*** 파트너 등록에 실패하였습니다.");
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
 		}
 		String sql2 = "UPDATE women SET partner_id = ? WHERE id = ?";
 		try (Connection conn = connection.getConnection();
@@ -155,7 +152,6 @@ public class MatchingRepository {
 				System.out.println("\n*** 파트너 등록에 실패하였습니다.");
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -177,8 +173,6 @@ public class MatchingRepository {
 						);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		return matching;
@@ -197,7 +191,6 @@ public class MatchingRepository {
 				System.out.println("\n*** 매칭 취소에 실패했습니다.");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		String sql2 = "UPDATE men SET partner_id = NULL WHERE id = ?";
@@ -207,7 +200,6 @@ public class MatchingRepository {
 			pstmt.setString(1, delMat.getMenNum());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		String sql3 = "UPDATE women SET partner_id = NULL WHERE id = ?";
@@ -217,45 +209,9 @@ public class MatchingRepository {
 			pstmt.setString(1, delMat.getWomenNum());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
-	// 아이디를 받아 맴버를 찾는 메서드
-//	public Member searchMember() {
-//		System.out.println("아이디를 입력하세요");
-//		System.out.print(">>>");
-//		String id = inputString();
-//		String sql = "";
-//		Member mem = new Member();
-//		if(id.charAt(0) == 'A') {
-//			sql = "SELECT * FROM men WHERE id = '" + id + "'";
-//		} else {
-//			sql = "SELECT * FROM women WHERE id = '" + id + "'" ;
-//		}
-//		try (Connection conn = connection.getConnection();
-//				PreparedStatement pstmt = conn.prepareStatement(sql);
-//				ResultSet rs = pstmt.executeQuery();) {
-//				while(rs.next()) {
-//				mem = new Member(
-//						"",
-//						rs.getString("id"),
-//						rs.getString("name"),
-//						rs.getInt("age"),
-//						rs.getString("job"),
-//						rs.getInt("salary"),
-//						rs.getString("grade"),
-//						rs.getInt("count"),
-//						rs.getString("partner_id"),
-//						rs.getInt("manager_num")
-//						);
-//				}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println(mem);
-//		return mem;
-//	}
 	// 결혼 확정 메서드
 	public void marry(int i) {
         String sql = "UPDATE matching SET married = ? WHERE match_num = ? AND married IS NULL";
@@ -269,7 +225,6 @@ public class MatchingRepository {
                 System.out.println("\n### 결혼등록에 실패하였습니다.");
             }
         } catch(Exception e) {
-            e.printStackTrace();
         }
     }
 }

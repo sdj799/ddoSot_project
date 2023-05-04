@@ -31,7 +31,6 @@ public class ManagerRepository {
 				System.out.println("신규매니저 등록에 실패하였습니다.");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 
@@ -64,7 +63,6 @@ public class ManagerRepository {
 				menList.add(man);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 		return menList;
@@ -95,7 +93,6 @@ public class ManagerRepository {
 				womenList.add(man);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 		return womenList;
@@ -119,7 +116,6 @@ public class ManagerRepository {
 				performList.add(manager);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		return performList;
