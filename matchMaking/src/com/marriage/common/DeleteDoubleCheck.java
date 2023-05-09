@@ -16,7 +16,7 @@ public class DeleteDoubleCheck {
 	}
 	
 	public static int doubleCheck() {
-		System.out.println("*** 정말로 결혼하시겠습니까? ***");
+		System.out.println("*** 결혼을 확정 하시겠습니까? ***");
 		System.out.print("[Y/N]>>> ");
 		String check = inputString();
 		if(check.equals("Y") || check.equals("y")) {
